@@ -1,5 +1,4 @@
 import React from 'react';
-import Topic from '../Home/Topic';
 
 export default function CommentList({ comments, refreshComments }) {
     return (

@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple discussion forum created using React, Airtable and Netlify.
+
+[Live Demo](https://amazing-hugle-0e7701.netlify.app/)
 
 ## Available Scripts
 

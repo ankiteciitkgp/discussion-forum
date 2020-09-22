@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import '../../App.css';
+import './Home.css';
+import Header from '../Header/Header';
 import TopicList from './TopicList';
+import TopicForm from './TopicForm';
+import { CircleLoader, ClipLoader } from 'react-spinners';
 
 export default function Home() {
     const [topics, setTopics] = useState([]);
-
+    const [loading, setLoading] = useState(true);
     const loadTopics = async () => {
+        setLoading(true);
         try {
             const res = await fetch('/api/topics');
             const topics = await res.json();
             setTopics(topics);
+            setLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -18,10 +23,16 @@ export default function Home() {
     useEffect(() => {
         loadTopics();
     }, []);
+
     return (
-        <div className="container mt-5">
-            <h1 className="mb-5 text-center">Discussion Board</h1>
-            <TopicList topics={topics} refreshTopics={loadTopics} />
+        <div>
+            <div className='ap-root'>
+                <Header title='Discussion Board' />
+                <div className='container mt-5'>
+                    <TopicForm refreshTopics={loadTopics} />
+                    {loading ? <ClipLoader/> : <TopicList topics={topics} refreshTopics={loadTopics} />}
+                </div>
+            </div>
         </div>
     );
 }

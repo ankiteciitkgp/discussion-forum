@@ -10,6 +10,7 @@ module.exports = async (event) => {
         const formattedTopics = topics.map((topic) => ({
             id: topic.id,
             ...topic.fields,
+            createdTime: topic.createdTime
         }));
         return formattedReturn(200, formattedTopics);
     } catch (err) {

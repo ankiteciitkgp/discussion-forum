@@ -2,10 +2,13 @@ const { topicTable } = require('./airtable');
 const formattedReturn = require('./formattedReturn');
 module.exports = async (event) => {
     try {
-        const topics = await topicTable.select().firstPage();
+        const topics = await topicTable.select({
+            sort: [{field: "id", direction: "desc"}]
+        }).firstPage();
         const formattedTopics = topics.map((topic) => ({
             id: topic.id,
-            ...topic.fields,
+            createdTime: topic._rawJson.createdTime,
+            ...topic.fields
         }));
         return formattedReturn(200, formattedTopics);
     } catch (err) {

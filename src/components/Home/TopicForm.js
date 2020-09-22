@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 
-export default function CommentForm({ currTopic, refreshComments }) {
-    const [comment, setComment] = useState('');
+export default function TopicForm({ refreshTopics }) {
+    const [topic, setTopic] = useState('');
 
     const resetForm = () => {
-        setComment('');
+        setTopic('');
     };
 
     const submitTopic = async (e) => {
-        if (comment.length < 1) {
-            alert("Please write some comment.");
+        if (topic.length < 1) {
+            alert("Empty discussion topic.");
             return;
         }
         e.preventDefault();
         try {
-            await fetch('/api/discussion/' + currTopic.id, {
+            await fetch('/api/topics/', {
                 method: 'POST',
                 body: JSON.stringify({
-                    comment
+                    topic
                 }),
             });
             resetForm();
-            refreshComments();
+            refreshTopics();
         } catch (err) {
             console.error(err);
         }
@@ -34,17 +34,17 @@ export default function CommentForm({ currTopic, refreshComments }) {
                     <div className="form-group">
                         <input
                             type="text"
-                            name="comment"
-                            value={comment}
+                            name="topic"
+                            value={topic}
                             className="form-control"
-                            placeholder="Add your comment here"
-                            onChange={(e) => setComment(e.target.value)}
+                            placeholder="Start a new discussion topic here!"
+                            onChange={(e) => setTopic(e.target.value)}
                         />
                     </div>
                 </div>
-                <div className="col-lg-1">
+                <div className="col-lg-2">
                     <button type="submit" className="btn btn-primary">
-                        Comment
+                        New Topic
                     </button>
                 </div>
             </div>

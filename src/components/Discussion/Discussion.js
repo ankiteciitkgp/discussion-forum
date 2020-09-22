@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ClipLoader } from 'react-spinners';
 import Header from '../Header/Header';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';

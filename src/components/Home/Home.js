@@ -3,7 +3,7 @@ import './Home.css';
 import Header from '../Header/Header';
 import TopicList from './TopicList';
 import TopicForm from './TopicForm';
-import { CircleLoader, ClipLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 export default function Home() {
     const [topics, setTopics] = useState([]);

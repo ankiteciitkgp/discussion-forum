@@ -3,7 +3,7 @@ module.exports = (timestamp) => {
     let currDate = new Date();
     let diffMinutes = (currDate-date)/(1000*60);
     if (diffMinutes < 1) {
-        return "🕐 a few seconds ago";
+        return "🕐 seconds ago";
     } else if (diffMinutes < 60) {
         return "🕐 "+Math.floor(diffMinutes) + " minutes";
     } else if (diffMinutes/60 <24) {

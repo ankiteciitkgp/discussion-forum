@@ -39,7 +39,7 @@ export default function CommentForm({ currTopic, refreshComments }) {
             <div className="row">
                 <div className="col">
                     <div className="form-group">
-                        <input
+                        <textarea
                             type="text"
                             name="comment"
                             value={comment}

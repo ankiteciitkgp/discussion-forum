@@ -13,11 +13,19 @@ export default function TopicForm({ refreshTopics }) {
             return;
         }
         e.preventDefault();
+        if (window.netlifyIdentity.currentUser() == null) {
+            window.netlifyIdentity.open();
+            return;
+        }
+
+        const name = window.netlifyIdentity.currentUser().user_metadata.full_name;
+
         try {
-            await fetch('/api/topics/', {
+            await fetch('/api/dboard/topic', {
                 method: 'POST',
                 body: JSON.stringify({
-                    topic
+                    topic,
+                    name
                 }),
             });
             resetForm();

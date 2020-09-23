@@ -11,7 +11,7 @@ export default function Home() {
     const loadTopics = async () => {
         setLoading(true);
         try {
-            const res = await fetch('/api/topics');
+            const res = await fetch('/api/dboard/topics');
             const topics = await res.json();
             setTopics(topics);
             setLoading(false);

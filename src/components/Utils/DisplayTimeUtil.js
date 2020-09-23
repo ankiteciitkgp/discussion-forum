@@ -12,7 +12,7 @@ module.exports = (timestamp) => {
         return "🕐 1 hour";
     } else if (diffMinutes/60 <24) {
         return "🕐 " + Math.floor(diffMinutes/60) + " hours";
-    }else if (Math.floor(diffMinutes/60) == 24) {
+    }else if (Math.floor(diffMinutes/60) === 24) {
         return "🕐 1 day";
     } else {
         return "🕐 " + Math.floor(diffMinutes/(60*24)) + " days";

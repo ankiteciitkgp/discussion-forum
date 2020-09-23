@@ -1,4 +1,5 @@
 import React from 'react';
+import { NetlifyIdentity } from '../NetlifyIdentity/NetlifyIdentity';
 // import { Link } from 'react-router-dom';
 // import HamburgerMenu from 'react-hamburger-menu';
 import './header.css';

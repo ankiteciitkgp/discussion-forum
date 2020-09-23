@@ -13,6 +13,9 @@ export default function Topic({ topic, refreshTopics }) {
         //window.location = "/discussion";
     }
     return (
-        <h6 className="list-group-item topic-item" onClick={onTopicClick} >{topic.topic}<span className="float-right">{DisplayTimeUtil(topic.createdTime)}</span></h6>
+        <li className="list-group-item topic-item"  onClick={onTopicClick} >
+            <p className="list-group-item-text">{topic.name} · {DisplayTimeUtil(topic.createdTime)}</p>
+            <p className="list-group-item-heading">{topic.topic}</p>
+        </li>
     );
 }

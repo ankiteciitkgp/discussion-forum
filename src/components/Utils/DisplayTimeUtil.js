@@ -4,15 +4,15 @@ module.exports = (timestamp) => {
     let diffMinutes = (currDate-date)/(1000*60);
     if (diffMinutes < 1) {
         return "🕐 seconds ago";
-    }else if (diffMinutes === 1) {
+    }else if (Math.floor(diffMinutes) === 1) {
         return "🕐 1 minute";
     } else if (diffMinutes < 60) {
         return "🕐 "+Math.floor(diffMinutes) + " minutes";
-    }else if (diffMinutes === 60) {
+    }else if (Math.floor(diffMinutes) === 60) {
         return "🕐 1 hour";
     } else if (diffMinutes/60 <24) {
         return "🕐 " + Math.floor(diffMinutes/60) + " hours";
-    }else if (diffMinutes/60 == 24) {
+    }else if (Math.floor(diffMinutes/60) == 24) {
         return "🕐 1 day";
     } else {
         return "🕐 " + Math.floor(diffMinutes/(60*24)) + " days";

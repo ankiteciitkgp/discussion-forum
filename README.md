@@ -90,9 +90,9 @@ Note: We are able to use /api/* for our API because of the redirect configuratio
 
 Now go to http://localhost:8888/api/dboard/topics and you will see the list of topics if you have defined any in your airtable.
 
-Check out the postman collection which defines all the API’s created using the serverless function here
+Check out the postman collection which defines all the API’s created using the serverless function [here](https://www.getpostman.com/collections/fe9496d3897f243c312d)
 
-
+![](/src/postman.png)
 
 ### Calling APIs from react:
 Fetching topics:

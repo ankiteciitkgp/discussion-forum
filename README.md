@@ -78,8 +78,8 @@ Remaining js files are corresponding to each operation
 Once you have done this you have your serverless api ready to be used in your frontend but how do you test it? 
 Netlify provided a command line interface for that. Do the following
 
-npm install -g netlify-cli
-netlify dev
+	npm install -g netlify-cli
+	netlify dev
 
 This beautiful command does a few things for us:
 Runs the serverless functions
@@ -156,3 +156,6 @@ Now you can open login screen on a button click or any other action using `windo
 The current user can be fetched using `window.netlifyIdentity.currentUser()`
 
 To know more about netligy identity see [this](https://github.com/netlify/netlify-identity-widget).
+
+### TODO
+Add role based redirects

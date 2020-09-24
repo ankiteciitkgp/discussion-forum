@@ -1,10 +1,11 @@
 ## JamStack Discussion Forum
-(React, Airtable, Serverless and Netlify)
+React, Airtable, Serverless and Netlify
+
 A simple discussion forum created using React, Airtable and Netlify.
 
 [Live Demo](https://amazing-hugle-0e7701.netlify.app/)
 
-Introduction:
+### Introduction:
 The objective of this guide is to set up your (Jam)stack in minutes for your web application.
 The stack:
 Airtable: Serverless database
@@ -13,7 +14,7 @@ Netlify: Build, deploy and CI/CD with github
 Netlify functions: Serverless computing
 Netlify Identity: Login/Signup
 
-Airtable Setup:
+### Airtable Setup:
 
 In airtable database equivalents are bases. Each base can have multiple tables.
 1. Sign up for a free account
@@ -49,7 +50,7 @@ There is a checkbox on top right to show your API key. Click on that and you wil
 Note: Airtable API’s have a Rate limit of only 5 requests per second as of now which make it unfit for applications like a discussion board. Alternatively, you can go with faunadb or dynamodb for such use cases.
 
 
-Project Setup:
+### Project Setup:
 To quickly set up the project, clone the repository. 
 
 Create a .env file containing the following environment variables
@@ -57,7 +58,7 @@ Create a .env file containing the following environment variables
 `AIRTABLE_API_KEY=<YOUR_API_KEY>
 AIRTABLE_BASE_ID=<YOUR_BASE_ID>`
 
-Serverless functions:
+### Serverless functions:
 
 In the root directory of the repository you will see a netlify.toml file. It contains information that netlify will read to understand where our serverless functions and some redirection rules for our website.
 Our netlify functions are stored in the functions folder of the root directory. You will see a file dboard.js which defines the one and only serverless function we are going to use.
@@ -93,7 +94,7 @@ Check out the postman collection which defines all the API’s created using the
 
 
 
-Calling APIs from react:
+### Calling APIs from react:
 Fetching topics:
 
 	   const loadTopics = async () => {
@@ -124,7 +125,7 @@ Post comments:
            alert("An error occurred while adding comment");
        }
 
-Deploying on Netlify:
+### Deploying on Netlify
 1. Create a netlify account if you don’t have one [here](https://app.netlify.com/signup).
 2. Click on “New site from git button”, select your repository and branch
 3. Write build command and name of publish directory
@@ -136,7 +137,7 @@ Click on advanced build settings and set your environment variables there:
 ![](netlify-env.png)
 Next click on deploy to start with the deployment.
 
-Netlify Identity:
+### Netlify Identity:
 Once you have deployed the site you will see an identity tab for your site. Enable identity by visiting the tab.
 
 I have created a react component NetlifyIdentity in `/src/components` folder of the project. Just place that component in your app.js  router as shown below.

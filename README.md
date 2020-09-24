@@ -1,4 +1,4 @@
-##JamStack Discussion Forum
+## JamStack Discussion Forum
 (React, Airtable, Serverless and Netlify)
 A simple discussion forum created using React, Airtable and Netlify.
 

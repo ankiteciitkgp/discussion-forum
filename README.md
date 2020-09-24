@@ -130,8 +130,9 @@ Post comments:
 2. Click on “New site from git button”, select your repository and branch
 3. Write build command and name of publish directory
 
-		Build command: CI= npm run build
-		Publish directory: build
+Build command: `CI= npm run build`
+
+Publish directory: `build`
 
 Click on advanced build settings and set your environment variables there:
 ![](netlify-env.png)

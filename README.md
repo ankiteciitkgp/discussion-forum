@@ -55,15 +55,15 @@ To quickly set up the project, clone the repository.
 
 Create a .env file containing the following environment variables
 
-`AIRTABLE_API_KEY=<YOUR_API_KEY>
-AIRTABLE_BASE_ID=<YOUR_BASE_ID>`
+	AIRTABLE_API_KEY=<YOUR_API_KEY>
+	AIRTABLE_BASE_ID=<YOUR_BASE_ID>
 
 ### Serverless functions:
 
 In the root directory of the repository you will see a netlify.toml file. It contains information that netlify will read to understand where our serverless functions and some redirection rules for our website.
 Our netlify functions are stored in the functions folder of the root directory. You will see a file dboard.js which defines the one and only serverless function we are going to use.
 
-Wait! You might be wondering if we will do a lot of operations for the discussion board like fetching/creating topics and fetching/posting comments. Why only one serverless function?
+> Wait! You might be wondering if we will do a lot of operations for the discussion board like fetching/creating topics and fetching/posting comments. Why only one serverless function?
 
 Ideally we should have created a single serverless function for each operation but serverless functions suffer with cold start issues if they are not used frequently. Read about that here.
 

@@ -30,7 +30,7 @@ export default function CommentForm({ currTopic, refreshComments }) {
             resetForm();
             refreshComments();
         } catch (err) {
-            alert("An error occured while adding comment");
+            alert("An error occurred while adding comment");
         }
     };
 

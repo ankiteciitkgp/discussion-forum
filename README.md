@@ -1,70 +1,157 @@
+##JamStack Discussion Forum
+(React, Airtable, Serverless and Netlify)
 A simple discussion forum created using React, Airtable and Netlify.
 
 [Live Demo](https://amazing-hugle-0e7701.netlify.app/)
 
-## Available Scripts
+Introduction:
+The objective of this guide is to set up your (Jam)stack in minutes for your web application.
+The stack:
+Airtable: Serverless database
+React: JavaScript UI framework
+Netlify: Build, deploy and CI/CD with github
+Netlify functions: Serverless computing
+Netlify Identity: Login/Signup
 
-In the project directory, you can run:
+Airtable Setup:
 
-### `yarn start`
+In airtable database equivalents are bases. Each base can have multiple tables.
+1. Sign up for a free account
+2. Create a new “base” (start from scratch)
+3. Define two new table for storing discussion topics and comments
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![](img/airtable-base.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+You will see a spreadsheet like user interface. Create the following tables and there columns as defined below:
 
-### `yarn test`
+Table1: Topics:
+`id: Autonumber
+topic: Single line text
+name: Single line text`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Table2: Comments: 
+`id: Autonumber
+comment: Long text
+discussion_id: Number (Integer(2))
+name: Single line tex`
 
-### `yarn build`
+Note: The table/column names are case sensitive
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![](img/airtable-tables.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Once you do that go to https://airtable.com/api and select your base and voila you will see an api documentation for your base and tables. 
 
-### `yarn eject`
+There is a checkbox on top right to show your API key. Click on that and you will see your api key in the highlighted text of the screenshot and your base id like base("baseId").
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![](img/airtable-documentation.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Note: Airtable API’s have a Rate limit of only 5 requests per second as of now which make it unfit for applications like a discussion board. Alternatively, you can go with faunadb or dynamodb for such use cases.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Project Setup:
+To quickly set up the project, clone the repository. 
 
-## Learn More
+Create a .env file containing the following environment variables
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`AIRTABLE_API_KEY=<YOUR_API_KEY>
+AIRTABLE_BASE_ID=<YOUR_BASE_ID>`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Serverless functions:
 
-### Code Splitting
+In the root directory of the repository you will see a netlify.toml file. It contains information that netlify will read to understand where our serverless functions and some redirection rules for our website.
+Our netlify functions are stored in the functions folder of the root directory. You will see a file dboard.js which defines the one and only serverless function we are going to use.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Wait! You might be wondering if we will do a lot of operations for the discussion board like fetching/creating topics and fetching/posting comments. Why only one serverless function?
 
-### Analyzing the Bundle Size
+Ideally we should have created a single serverless function for each operation but serverless functions suffer with cold start issues if they are not used frequently. Read about that here.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+To overcome that we do all the operations via a single function to avoid cold start issues with every operation. I would still recommend using separate functions for complex operations.
 
-### Making a Progressive Web App
+helper folder here contains the actual functions and some utilities required by our dboard function
+dboard.js calls the desired function required for a particular event
+airtable.js connects with your base and exports objects for your tables
+formattedReturn.js utility which formats the response body
+Remaining js files are corresponding to each operation
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Once you have done this you have your serverless api ready to be used in your frontend but how do you test it? 
+Netlify provided a command line interface for that. Do the following
 
-### Advanced Configuration
+npm install -g netlify-cli
+netlify dev
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+This beautiful command does a few things for us:
+Runs the serverless functions
+Runs a web server for your site
+Creates a proxy for front end and serverless functions to talk to each other on Port 8888
 
-### Deployment
+Note: We are able to use /api/* for our API because of the redirect configuration in the netlify.toml file.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Now go to http://localhost:8888/api/dboard/topics and you will see the list of topics if you have defined any in your airtable.
 
-### `yarn build` fails to minify
+Check out the postman collection which defines all the API’s created using the serverless function here
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+Calling APIs from react:
+Fetching topics:
+
+	   const loadTopics = async () => {
+	       setLoading(true);
+	       try {
+	           const res = await fetch('/api/dboard/topics');
+	           const topics = await res.json();
+	           setTopics(topics);
+	           setLoading(false);
+	       } catch (error) {
+	           console.error(error);
+	       }
+	   };
+
+Post comments:
+
+       try {
+           await fetch('/api/dboard/comment/' + currTopic.id, {
+               method: 'POST',
+               body: JSON.stringify({
+                   comment,
+                   name
+               }),
+           });
+           resetForm();
+           refreshComments();
+       } catch (err) {
+           alert("An error occurred while adding comment");
+       }
+
+Deploying on Netlify:
+1. Create a netlify account if you don’t have one [here](https://app.netlify.com/signup).
+2. Click on “New site from git button”, select your repository and branch
+3. Write build command and name of publish directory
+
+		Build command: CI= npm run build
+		Publish directory: build
+
+Click on advanced build settings and set your environment variables there:
+![](netlify-env.png)
+Next click on deploy to start with the deployment.
+
+Netlify Identity:
+Once you have deployed the site you will see an identity tab for your site. Enable identity by visiting the tab.
+
+I have created a react component NetlifyIdentity in `/src/components` folder of the project. Just place that component in your app.js  router as shown below.
+
+		<Router>
+		           <NetlifyIdentity/>
+		           <Route exact path='/' component={Home} />
+		           <Route exact path="/discussion/:id" component={Discussion} />
+		</Router>
+
+The above code snipped will initialize netlify identity with a global object netlifyIdentity
+as soon as your application is loaded.
+
+Now you can open login screen on a button click or any other action using `window.netlifyIdentity.open()`
+
+The current user can be fetched using `window.netlifyIdentity.currentUser()`
+
+To know more about netligy identity see [this](https://github.com/netlify/netlify-identity-widget).

@@ -5,8 +5,10 @@ const getTopic = require('./helpers/getTopic');
 const getComments = require('./helpers/getComments');
 const createComment = require('./helpers/createComment');
 
-exports.handler = async (event) => {
-    console.log(event.path);
+exports.handler = async (event,context,callback) => {
+    console.log(context.identity);
+    console.log('#################');
+    console.log(context.clientContext);
     if (event.httpMethod === 'GET' && event.path == '/api/dboard/topics') {
         return await getTopics(event);
     } else if (event.httpMethod === 'GET' && event.path.indexOf('/api/dboard/topic/')>-1) {

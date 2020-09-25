@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import DisplayTimeUtil from '../Utils/DisplayTimeUtil';
+import '../../styles/comments.css';
 
 export default function Topic({ topic, refreshTopics }) {
     const history = useHistory();
@@ -13,9 +14,12 @@ export default function Topic({ topic, refreshTopics }) {
         //window.location = "/discussion";
     }
     return (
-        <li className="list-group-item topic-item"  onClick={onTopicClick} >
-            <p className="list-group-item-text">{topic.name} · {DisplayTimeUtil(topic.createdTime)}</p>
-            <p className="list-group-item-heading">{topic.topic}</p>
-        </li>
+        <div className="comment__list"  onClick={onTopicClick} >
+            <div className="comment__header">
+                <div className="comment__header--name">{topic.name}</div>
+                <div className="comment__header--date">{DisplayTimeUtil(topic.createdTime)}</div>
+            </div>
+            <div className="comment__list--content">{topic.topic}</div>
+        </div>
     );
 }

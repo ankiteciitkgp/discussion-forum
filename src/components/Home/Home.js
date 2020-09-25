@@ -25,10 +25,10 @@ export default function Home() {
     }, []);
 
     return (
-        <div>
-            <div className='ap-root'>
+        <div className='flex-parent'>
+            <div className='ap-root app-bg'>
                 <Header title='Discussion Board' />
-                <div className='container mt-5'>
+                <div className='container-fluid'>
                     <TopicForm refreshTopics={loadTopics} />
                     {loading ? <ClipLoader/> : <TopicList topics={topics} refreshTopics={loadTopics} />}
                 </div>

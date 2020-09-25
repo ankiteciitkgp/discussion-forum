@@ -9,8 +9,8 @@ export default function Header(goback,{ title = 'Discussion Board' }) {
 
     return (
         <div className='header'>
-            <div className='header'>
-            <p>{title}</p>
+            <div className='text-center'>
+                <p>{title}</p>
             </div>
         </div>
     )

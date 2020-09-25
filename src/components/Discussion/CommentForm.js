@@ -50,7 +50,7 @@ export default function CommentForm({ currTopic, refreshComments }) {
                     </div>
                 </div>
                 <div className="col-lg-1">
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn gs-btn-primary">
                         Comment
                     </button>
                 </div>

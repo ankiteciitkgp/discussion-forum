@@ -48,7 +48,7 @@ export default function Discussion() {
         <div>
             <div className='ap-root'>
                 <Header title='Discussion Board' />
-                <div className='container mt-5'>
+                <div className='container-fluid'>
 
                     <h4 className="mb-5 text-center">{topic.topic}</h4>
                     <CommentForm currTopic={topic} refreshComments={loadComments} />

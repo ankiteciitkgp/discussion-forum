@@ -8,6 +8,7 @@ export default function CommentForm({ currTopic, refreshComments }) {
     };
 
     const submitComment = async (e) => {
+        e.preventDefault();
         if (comment.length < 1) {
             alert("Please write some comment.");
             return;

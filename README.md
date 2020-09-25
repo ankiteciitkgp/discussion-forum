@@ -149,14 +149,14 @@ I have created a react component NetlifyIdentity in `/src/components` folder of 
 		           <Route exact path="/discussion/:id" component={Discussion} />
 		</Router>
 
-The above code snipped will initialize netlify identity with a global object netlifyIdentity
+The above code snipped will initialize netlify identity with a global object `netlifyIdentity`
 as soon as your application is loaded.
 
 Now you can open login screen on a button click or any other action using `window.netlifyIdentity.open()`
 
 The current user can be fetched using `window.netlifyIdentity.currentUser()`
 
-To know more about netligy identity see [this](https://github.com/netlify/netlify-identity-widget).
+To know more about netlify identity see [this](https://github.com/netlify/netlify-identity-widget).
 
 ### TODO
 Add role based redirects

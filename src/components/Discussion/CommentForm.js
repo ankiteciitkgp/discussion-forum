@@ -9,7 +9,7 @@ export default function CommentForm({ currTopic, refreshComments }) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const handleSave = () => {
+    const handleSave = (e) => {
         debugger;
         if (name == '') {
             alert("Please enter a valid name");
@@ -17,6 +17,7 @@ export default function CommentForm({ currTopic, refreshComments }) {
         }
         setCookie('USER_NAME', name, 10000);
         handleClose();
+        submitComment(e);
     }
     const resetForm = () => {
         setComment('');

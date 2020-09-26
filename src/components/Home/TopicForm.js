@@ -9,7 +9,7 @@ export default function TopicForm({ refreshTopics }) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const handleSave = () => {
+    const handleSave = (e) => {
         debugger;
         if (name == '') {
             alert("Please enter a valid name");
@@ -17,6 +17,7 @@ export default function TopicForm({ refreshTopics }) {
         }
         setCookie('USER_NAME', name, 10000);
         handleClose();
+        submitTopic(e);
     }
     const resetForm = () => {
         setTopic('');

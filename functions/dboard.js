@@ -8,17 +8,16 @@ const verify  =  require("jsonwebtoken/verify");
 require('dotenv').config();
 
 exports.handler = async (event,context,callback) => {
-    //process.env.JWT_SECRET
-    try {
-        console.log(event.headers.cookie);
-        let token = event.headers.cookie.split(`nf_jwt=`)[1].split(`;`)[0];
-        console.log(token);
-        var a = verify(token,'$ecret');
-        console.log(a);
-    } catch (err){
-        console.log(err);
-        formattedReturn(403, {});
-    }
+    // try {
+    //     console.log(event.headers.cookie);
+    //     let token = event.headers.cookie.split(`nf_jwt=`)[1].split(`;`)[0];
+    //     console.log(token);
+    //     var a = verify(token,process.env.JWT_SECRET);
+    //     console.log(a);
+    // } catch (err){
+    //     console.log(err);
+    //     return formattedReturn(403, {});
+    // }
 
     if (event.httpMethod === 'GET' && event.path == '/api/dboard/topics') {
         return await getTopics(event);

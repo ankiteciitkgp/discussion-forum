@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import TopicList from './TopicList';
 import TopicForm from './TopicForm';
 import { ClipLoader } from 'react-spinners';
+import NameModal from '../NameModal/NameModal';
 
 export default function Home() {
     const [topics, setTopics] = useState([]);

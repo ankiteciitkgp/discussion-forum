@@ -65,8 +65,8 @@ export default function CommentForm({ currTopic, refreshComments }) {
                         />
                     </div>
                 </div>
-                <div className="col-lg-1">
-                    <button type="submit" className="btn gs-btn-primary">
+                <div className="col-lg-2 pb-3">
+                    <button type="submit" className="btn gs-btn-primary w100">
                         Comment
                     </button>
                 </div>

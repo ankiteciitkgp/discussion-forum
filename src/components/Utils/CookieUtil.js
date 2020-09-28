@@ -5,7 +5,6 @@ export function setCookie(c_name, value, expiredays) {
 }
 
 export function getCookie(name) {
-    debugger;
     var dc = document.cookie;
     var prefix = name + "=";
     var begin = dc.indexOf("; " + prefix);

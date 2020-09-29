@@ -16,7 +16,7 @@ exports.handler = async (event,context,callback) => {
         console.log(a);
     } catch (err){
         console.log(err);
-        return formattedReturn(403, {});
+        //return formattedReturn(403, {});
     }
 
     if (event.httpMethod === 'GET' && event.path == '/api/dboard/topics') {

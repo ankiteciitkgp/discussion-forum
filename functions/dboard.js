@@ -12,10 +12,12 @@ exports.handler = async (event,context,callback) => {
         console.log(event.headers.cookie);
         let token = event.headers.cookie.split(`nf_jwt=`)[1].split(`;`)[0];
         console.log(token);
+        console.log(process.env.JWT_SECRET)
         var a = verify(token,process.env.JWT_SECRET);
         console.log(a);
     } catch (err){
         console.log(err);
+        //var a = verify(token);
         //return formattedReturn(403, {});
     }
 

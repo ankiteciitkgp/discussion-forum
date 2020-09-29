@@ -4,23 +4,9 @@ const createTopics = require('./helpers/createTopics');
 const getTopic = require('./helpers/getTopic');
 const getComments = require('./helpers/getComments');
 const createComment = require('./helpers/createComment');
-const verify  =  require("jsonwebtoken/verify");
 require('dotenv').config();
 
 exports.handler = async (event,context,callback) => {
-    try {
-        console.log(event.headers.cookie);
-        let token = event.headers.cookie.split(`nf_jwt=`)[1].split(`;`)[0];
-        console.log(token);
-        console.log(process.env.JWT_SECRET)
-        var a = verify(token,process.env.JWT_SECRET);
-        console.log(a);
-    } catch (err){
-        console.log(err);
-        //var a = verify(token);
-        //return formattedReturn(403, {});
-    }
-
     if (event.httpMethod === 'GET' && event.path == '/api/dboard/topics') {
         return await getTopics(event);
     } else if (event.httpMethod === 'GET' && event.path.indexOf('/api/dboard/topic/')>-1) {

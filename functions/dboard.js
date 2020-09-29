@@ -8,6 +8,7 @@ const verify  =  require("jsonwebtoken/verify");
 require('dotenv').config();
 
 exports.handler = async (event,context,callback) => {
+    console.log(event.headers.cookie);
     // try {
     //     console.log(event.headers.cookie);
     //     let token = event.headers.cookie.split(`nf_jwt=`)[1].split(`;`)[0];

@@ -3,10 +3,10 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 25px 10px;
+    padding: 10px;
 }
 .header p {
-    color: #4a4a4a;
+    color: #383838;
     margin: 0.5rem 0;
     font-size: 1.5rem;
     line-height: 1.2rem;

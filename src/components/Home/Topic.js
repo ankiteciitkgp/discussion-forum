@@ -16,10 +16,10 @@ export default function Topic({ topic, refreshTopics }) {
     return (
         <div className="comment__list"  onClick={onTopicClick} >
             <div className="comment__header">
-                <div className="comment__header--name">{topic.name}</div>
+                <div className="comment__header--name">{topic.topic}</div>
                 <div className="comment__header--date">{DisplayTimeUtil(topic.createdTime)}</div>
             </div>
-            <div className="comment__list--content">{topic.topic}</div>
+            <div className="comment__list--content hide">{topic.name}</div>
         </div>
     );
 }

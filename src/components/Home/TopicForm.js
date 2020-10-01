@@ -52,7 +52,7 @@ export default function TopicForm({ refreshTopics }) {
                 </div>
                 <div className="col-lg-2">
                     <button type="submit" className="btn gs-btn-primary w100">
-                        New Topic
+                        Add Topic
                     </button>
                 </div>
             </div>

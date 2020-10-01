@@ -4,8 +4,8 @@ import Topic from './Topic';
 export default function TopicList({ topics, refreshTopics }) {
     return (
         <div>
-            <h4 className="heading mt-5 mb-3">Topics</h4>
-            <div className="list-group">
+            <h4 className="heading">Topics</h4>
+            <div className="comment__group">
                 {topics
                     .map((topic) => (
                         <Topic

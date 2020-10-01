@@ -16,6 +16,10 @@ code {
 textarea.form-control {
 	resize: none;
 	font-size: 0.8rem;
+	height: 75px !important;
+}
+.btn {
+    font-size: 0.8rem !important;
 }
 .gs-btn-primary {
     color: #fff !important;
@@ -39,3 +43,11 @@ textarea.form-control {
     display: flex;
     flex-direction: column;
 }
+.hide {
+	display: none;
+}
+::-webkit-scrollbar {width:6px;height:6px;}
+::-webkit-scrollbar-track {background: rgba(255,255,255,.08);}
+::-webkit-scrollbar-track-piece {width:30px;height:30px;}
+::-webkit-scrollbar-thumb {background-color: rgba(0,0,0,.2);}
+::-webkit-scrollbar-thumb:window-inactive {background: #d8d8d8;}

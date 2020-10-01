@@ -4,16 +4,19 @@ import '../../styles/comments.css';
 
 export default function CommentList({ comments, refreshComments, loading }) {
     return (
-            <div className="list-group">
+            <div className="comment__group mt-4">
                 {comments
                     .map((comment,key) => (
                         
                         <div className="comment__list" key={key}>
                             <div className="comment__header">
-                                <div className="comment__header--name">{comment.name}</div>
-                                <div className="comment__header--date">{DisplayTimeUtil(comment.createdTime)}</div>
+                                <div className="topic-comments">{comment.comment}</div>
                             </div>
-                            <div className="comment__list--content">{comment.comment}</div>
+                            <div className="comment__footer">
+                                <div className="comment__list--author">{comment.name}</div>
+                                <div className="comment-sep">.</div>
+                                <div className="comments-date mt-2">{DisplayTimeUtil(comment.createdTime)}</div>
+                            </div>
                         </div>
                     ))}
             </div>

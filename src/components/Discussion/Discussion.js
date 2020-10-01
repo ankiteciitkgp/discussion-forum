@@ -3,6 +3,7 @@ import { ClipLoader } from 'react-spinners';
 import Header from '../Header/Header';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
+import Footer from '../Footer/Footer';
 
 export default function Discussion() {
     const [topic, setTopic] = useState({
@@ -48,10 +49,11 @@ export default function Discussion() {
         <div>
             <div className='ap-root'>
                 <div className='container-fluid'>
-                    <h4 className="mb-5 text-center">{topic.topic}</h4>
+                    <h4 className="topic__heading">{topic.topic}</h4>
                     <CommentForm currTopic={topic} refreshComments={loadComments} />
-                    {loading ? <ClipLoader/> : null}
+                    <div className="text-center">{loading ? <ClipLoader/> : null}</div>
                     <CommentList comments={comments} refreshComments={loadComments} loading={loading} />
+                    <Footer />
                 </div>
             </div>
         </div>

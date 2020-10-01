@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import TopicList from './TopicList';
 import TopicForm from './TopicForm';
 import { ClipLoader } from 'react-spinners';
+import Footer from '../Footer/Footer';
 
 export default function Home() {
     const [topics, setTopics] = useState([]);
@@ -32,6 +33,7 @@ export default function Home() {
                     <TopicForm refreshTopics={loadTopics} />
                     {loading ? <ClipLoader/> : <TopicList topics={topics} refreshTopics={loadTopics} />}
                 </div>
+                <Footer />
             </div>
         </div>
     );

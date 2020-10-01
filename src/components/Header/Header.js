@@ -3,13 +3,15 @@ import React from 'react';
 // import HamburgerMenu from 'react-hamburger-menu';
 import './header.css';
 
-export default function Header(goback,{ title = 'Discussion Board' }) {
+export default function Header({ title = 'Discussion Board' }) {
 
     return (
         <div className='header'>
-            <div className='text-center'>
-                <p>{title}</p>
+            <a href={window.location.origin}><i className="fa fa-home"></i></a>
+            <div className='header'>
+            <p>{title}</p>
             </div>
+            <a href={'https://wa.me/?text=' + encodeURI(window.location)} target="_blank"><i className="fa fa-share"></i></a>
         </div>
     )
 }

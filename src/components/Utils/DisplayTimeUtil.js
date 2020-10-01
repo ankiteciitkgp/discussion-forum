@@ -1,20 +1,14 @@
 module.exports = (timestamp) => {
     let date = new Date(timestamp);
     let currDate = new Date();
-    let diffMinutes = (currDate-date)/(1000*60);
-    if (diffMinutes < 1) {
-        return "s";
-    }else if (Math.floor(diffMinutes) === 1) {
-        return "1 m";
-    } else if (diffMinutes < 60) {
-        return +Math.floor(diffMinutes) + " m";
-    }else if (Math.floor(diffMinutes) === 60) {
-        return "1 h";
-    } else if (diffMinutes/60 <24) {
-        return + Math.floor(diffMinutes/60) + " h";
-    }else if (Math.floor(diffMinutes/60) === 24) {
-        return "1 day";
+    let diff = (currDate-date)/(1000);
+    if (diff < 60) {
+        return Math.floor(diff) + " s";
+    }else if (diff/60 < 60) {
+        return +Math.floor(diff/60) + " m";
+    } else if (diff/3600 <24) {
+        return + Math.floor(diff/3600) + " h";
     } else {
-        return + Math.floor(diffMinutes/(60*24)) + " d";
+        return + Math.floor(diff/(3600*24)) + " d";
     }
 };

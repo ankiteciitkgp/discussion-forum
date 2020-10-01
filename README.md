@@ -23,7 +23,7 @@ In airtable database equivalents are bases. Each base can have multiple tables.
 
 ![](img/airtable-base.png)
 
-You will see a spreadsheet like user interface. Create the following tables and there columns as defined below:
+You will see a spreadsheet like user interface. Create the following tables and their columns as defined below:
 
 Table1: Topics:
 `id: Autonumber
@@ -34,7 +34,7 @@ Table2: Comments:
 `id: Autonumber
 comment: Long text
 discussion_id: Number (Integer(2))
-name: Single line tex`
+name: Single line text`
 
 Note: The table/column names are case sensitive
 

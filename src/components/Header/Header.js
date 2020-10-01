@@ -3,8 +3,6 @@ import React from 'react';
 // import HamburgerMenu from 'react-hamburger-menu';
 import './header.css';
 
-
-
 export default function Header(goback,{ title = 'Discussion Board' }) {
 
     return (

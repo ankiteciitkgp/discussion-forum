@@ -4,13 +4,12 @@ import Header from '../Header/Header';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 import Footer from '../Footer/Footer';
-var shareIcon = require('../../img/share-icon.png');
+
 export default function Discussion() {
     const [topic, setTopic] = useState({
         "topic": ""
     });
 
-    const [shareText, setShareText] = useState();
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -35,18 +34,10 @@ export default function Discussion() {
             const res1 = await fetch('/api/dboard/topic/' + id);
             const topic = await res1.json();
             setTopic(topic[0]);
-            setShareText(getShareText());
         } catch (error) {
             console.error(error);
         }
     };
-
-    const getShareText = ()=> {
-        let text = 'https://wa.me/?text=';
-        let msg = 'Hey!Check this discussion out: ' + window.location;
-        debugger;
-        return text + encodeURI(msg);  
-    }
 
 
     useEffect(() => {

@@ -31,7 +31,7 @@ export default function Home() {
                 <Header title='Discussion Board' />
                 <div className='container-fluid'>
                     <TopicForm refreshTopics={loadTopics} />
-                    {loading ? <ClipLoader/> : <TopicList topics={topics} refreshTopics={loadTopics} />}
+                    {loading ? <div className="text-center"><ClipLoader/></div> : <TopicList topics={topics} refreshTopics={loadTopics} />}
                 </div>
                 <Footer />
             </div>

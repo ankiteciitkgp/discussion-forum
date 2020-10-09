@@ -5,11 +5,12 @@ module.exports = async (event) => {
         const url = event.path.split("/");
         id = url[url.length-1];
         const comments = await commentsTable.select({
-            filterByFormula: "{discussion_id} =" + id,
-            sort: [{field: "id", direction: "desc"}]
+            filterByFormula: "{topic_id} =" + id,
+            sort: [{field: "id", direction: "desc"}],
+            view: "Grid view"
         }).firstPage();
         const formattedComments = comments.map((comment) => ({
-            id: comment.id,
+            rec_id: comment.id,
             createdTime: comment._rawJson.createdTime,
             ...comment.fields
         }));

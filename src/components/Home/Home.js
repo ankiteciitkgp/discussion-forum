@@ -15,6 +15,7 @@ export default function Home() {
             const res = await fetch('/api/dboard/topics');
             const topics = await res.json();
             setTopics(topics);
+            debugger;
             setLoading(false);
         } catch (error) {
             console.error(error);

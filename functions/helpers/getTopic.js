@@ -5,10 +5,11 @@ module.exports = async (event) => {
         const url = event.path.split("/");
         id = url[url.length-1];
         const topics = await topicTable.select({
-            filterByFormula: "{id} =" + id
+            filterByFormula: "{id} =" + id,
+            view: "Grid view"
         }).firstPage();
         const formattedTopics = topics.map((topic) => ({
-            id: topic.id,
+            rec_id: topic.id,
             ...topic.fields,
             createdTime: topic.createdTime
         }));

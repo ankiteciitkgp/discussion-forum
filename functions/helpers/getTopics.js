@@ -3,10 +3,11 @@ const formattedReturn = require('./formattedReturn');
 module.exports = async (event) => {
     try {
         const topics = await topicTable.select({
-            sort: [{field: "id", direction: "desc"}]
+            sort: [{field: "modifiedTime", direction: "desc"}],
+            view: "Grid view"
         }).firstPage();
         const formattedTopics = topics.map((topic) => ({
-            id: topic.id,
+            rec_id: topic.id,
             createdTime: topic._rawJson.createdTime,
             ...topic.fields
         }));

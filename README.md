@@ -33,7 +33,7 @@ name: Single line text`
 Table2: Comments: 
 `id: Autonumber
 comment: Long text
-discussion_id: Number (Integer(2))
+topic_id: Number (Integer(2))
 name: Single line text`
 
 Note: The table/column names are case sensitive

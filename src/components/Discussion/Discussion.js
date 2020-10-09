@@ -20,6 +20,7 @@ export default function Discussion() {
         try {
             const res = await fetch('/api/dboard/comments/' + id);
             const comments = await res.json();
+            debugger;
             setComments(comments);
             setLoading(false);
         } catch (error) {
@@ -33,6 +34,7 @@ export default function Discussion() {
         try {
             const res1 = await fetch('/api/dboard/topic/' + id);
             const topic = await res1.json();
+            debugger;
             setTopic(topic[0]);
         } catch (error) {
             console.error(error);

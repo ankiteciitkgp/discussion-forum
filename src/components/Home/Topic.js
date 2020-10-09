@@ -17,7 +17,8 @@ export default function Topic({ topic, refreshTopics }) {
         <div className="comment__list"  onClick={onTopicClick} >
             <div className="comment__header">
                 <div className="comment__header--name">{topic.topic}</div>
-                <div className="comment__header--date">{DisplayTimeUtil(topic.createdTime)}</div>
+                <div className="comment__header--date">{topic.Comments ? topic.Comments.length : 0} 💬</div>
+                <div className="comment__header--date">{DisplayTimeUtil(topic.modifiedTime)}</div>
             </div>
             <div className="comment__list--content hide">{topic.name}</div>
         </div>

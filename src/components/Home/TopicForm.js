@@ -11,7 +11,7 @@ export default function TopicForm({ refreshTopics }) {
     const handleShow = () => setShow(true);
     const handleSave = (e) => {
         debugger;
-        if (name == '') {
+        if (name === '') {
             alert("Please enter a valid name");
             return;
         }

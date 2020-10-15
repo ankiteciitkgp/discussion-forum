@@ -8,7 +8,7 @@ export default function Topic({ topic, refreshTopics }) {
 
     const onTopicClick = () => {
         history.push({ //browserHistory.push should also work here
-            pathname: "/discussion/" + topic.id,
+            pathname: "/discussion/" + topic.fields.id,
             state: topic
         });
         //window.location = "/discussion";
@@ -16,9 +16,9 @@ export default function Topic({ topic, refreshTopics }) {
     return (
         <div className="comment__list"  onClick={onTopicClick} >
             <div className="comment__header">
-                <div className="comment__header--name">{topic.topic}</div>
-                <div className="comment__header--date">{topic.Comments ? topic.Comments.length : 0} 💬</div>
-                <div className="comment__header--date">{DisplayTimeUtil(topic.modifiedTime)}</div>
+                <div className="comment__header--name">{topic.fields.topic}</div>
+                <div className="comment__header--date">{topic.fields.Comments ? topic.fields.Comments.length : 0} 💬</div>
+                <div className="comment__header--date">{DisplayTimeUtil(topic.fields.modifiedTime)}</div>
             </div>
             <div className="comment__list--content hide">{topic.name}</div>
         </div>

@@ -1,17 +1,18 @@
 const { topicTable } = require('./airtable');
 const formattedReturn = require('./formattedReturn');
+const fetch = require('node-fetch');
+
 module.exports = async (event) => {
     try {
-        const topics = await topicTable.select({
-            sort: [{field: "modifiedTime", direction: "desc"}],
-            view: "Grid view"
-        }).firstPage();
-        const formattedTopics = topics.map((topic) => ({
-            rec_id: topic.id,
-            createdTime: topic._rawJson.createdTime,
-            ...topic.fields
-        }));
-        return formattedReturn(200, formattedTopics);
+        var requestOptions = {
+            method: 'GET',
+            headers: {"Authorization": "Bearer " + process.env.AIRTABLE_API_KEY},
+            redirect: 'follow'
+        };
+        var resp = await fetch("https://api.airtable.com/v0/appSCqrEiqkxSEQpG/Topics?sort[0][field]=modifiedTime&sort[0][direction]=desc&pageSize=10&view=Grid view", requestOptions);
+        
+        const jsonResp = await resp.json();
+        return formattedReturn(200, jsonResp);
     } catch (err) {
         console.error(err);
         return formattedReturn(500, {});

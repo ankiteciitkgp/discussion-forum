@@ -79,17 +79,20 @@ export default function Discussion() {
         }
     };
 
+    const onScroll = () => {
+        let el = document.scrollingElement;
+        if (el.scrollTop + el.clientHeight >= el.scrollHeight-100) {
+            loadMoreComments();
+        }
+    }
 
     useEffect(() => {
         loadComments();
         loadTopic();
 
-        document.addEventListener('scroll', function () {
-            let el = document.scrollingElement;
-            if (el.scrollTop + el.clientHeight === el.scrollHeight) {
-                loadMoreComments();
-            }
-        });
+        document.addEventListener('scroll', onScroll);
+        document.addEventListener('touchMove', onScroll);
+
 
     }, []);
     return (

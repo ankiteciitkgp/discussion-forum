@@ -60,16 +60,17 @@ export default function Home() {
         }
     };
 
-
+    const onScroll = () => {
+        let el = document.scrollingElement;
+        if (el.scrollTop + el.clientHeight >= el.scrollHeight-100) {
+            loadMoreTopics();
+        }
+    }
     useEffect(() => {
         loadTopics();
 
-        document.addEventListener('scroll', function () {
-            let el = document.scrollingElement;
-            if (el.scrollTop + el.clientHeight === el.scrollHeight) {
-                loadMoreTopics();
-            }
-        });
+        document.addEventListener('scroll', onScroll);
+        document.addEventListener('touchMove', onScroll);
 
     }, []);
 

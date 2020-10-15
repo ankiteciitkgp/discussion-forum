@@ -98,7 +98,7 @@ export default function Discussion() {
     return (
         <div>
             <div className='ap-root'>
-                <Header title='Discussion Board' />
+                <Header title='Discussion Board' message={topic.topic+' '} />
                 <div className='container-fluid'>
                     <h4 className="topic__heading">{topic.topic}</h4>
                     <CommentForm currTopic={topic} refreshComments={loadComments} />

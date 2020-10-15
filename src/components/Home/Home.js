@@ -40,6 +40,7 @@ export default function Home() {
                 setBottomLoader(false);
                 return;
             }
+            setOffsetTopics(null);
             const res = await fetch('/api/dboard/topics', {
                 method: 'POST',
                 body: JSON.stringify({

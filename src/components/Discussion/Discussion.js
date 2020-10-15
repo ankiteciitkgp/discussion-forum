@@ -47,6 +47,7 @@ export default function Discussion() {
                 setBottomLoader(false);
                 return;
             }
+            setOffset(null);
             const res = await fetch('/api/dboard/comments/' + id, {
                 method: 'POST',
                 body: JSON.stringify({

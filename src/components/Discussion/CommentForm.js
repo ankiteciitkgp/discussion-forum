@@ -36,6 +36,7 @@ export default function CommentForm({ currTopic, refreshComments }) {
         }
         const name = getCookie('USER_NAME');
         try {
+            debugger;
             await fetch('/api/dboard/comment/' + currTopic.rec_id, {
                 method: 'POST',
                 body: JSON.stringify({
